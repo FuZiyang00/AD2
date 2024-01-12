@@ -4,6 +4,17 @@
 #include <iomanip> 
 #include <iostream>
 #include <algorithm>  // for std::max
+#include <cctype>
+
+bool CSV_parser::isNumeric(const std::string& str) {
+    for (char c : str) {
+        if (!std::isdigit(c) && c != '.' && c != '-') {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 std::vector<std::string> CSV_parser::tokenize(const std::string& str, char delimiter) const {
     std::vector<std::string> tokens;
@@ -33,23 +44,30 @@ bool CSV_parser::parseCSV() {
         rows.push_back(cells);
     }
 
-    size_t n_columns = rows[0].size();
+    size_t n_columns = rows.empty() ? 0 : rows[0].size();
     for (size_t i = 0; i < n_columns; ++i) {
         Column column;
         for (const auto& row : rows) {
-            const auto& cell = row[i];
+            const auto& cell = (i < row.size()) ? row[i] : "";
             if (cell.empty()) {
                 column.push_back(std::nullopt);
-            } else if (std::isdigit(cell[0]) || (cell[0] == '-' && std::isdigit(cell[1]))) {
+            } else if (isNumeric(cell)) {
                 // Numeric field
-                if (cell.find('.') != std::string::npos) {
-                    // Double
-                    column.push_back(std::stod(cell));
-                } else {
-                    column.push_back(std::stoi(cell));
+                try {
+                    if (cell.find('.') != std::string::npos) {
+                        // Double
+                        column.push_back(std::stod(cell));
+                    } else {
+                        // Integer
+                        column.push_back(std::stoi(cell));
+                    }
+                } catch (const std::invalid_argument& e) {
+                    std::cerr << "Error converting cell to numeric value: " << e.what() << std::endl;
+                    // Handle the error (e.g., push a default value or std::nullopt)
+                    column.push_back(std::nullopt);
                 }
             } else {
-                // Categorical data (moved outside the else if block)
+                // Categorical data
                 column.push_back(cell);
             }
         }
@@ -58,6 +76,7 @@ bool CSV_parser::parseCSV() {
     file.close();
     return true;
 }
+
 
 
 void CSV_parser::displayTable(size_t numLinesToDisplay) const {

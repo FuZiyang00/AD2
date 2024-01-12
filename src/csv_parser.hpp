@@ -25,5 +25,6 @@ private:
     Table csv;
     // Function to split a string into tokens based on a delimiter
     std::vector<std::string> tokenize(const std::string& str, char delimiter) const;
+    bool isNumeric(const std::string& str);
 };
 #endif // CSV_PARSER_HPP

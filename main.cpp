@@ -27,6 +27,7 @@ int main(int argc, char** argv) {
     const CSV_parser::Column salary = csvData[5];
     StatisticalOperation stats(salary, csvData);
     double mean = stats.mean();
+    std::cout<< mean ;
 
     return 0;
 }
