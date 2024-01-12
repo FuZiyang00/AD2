@@ -4,6 +4,12 @@
 #include <memory> 
 #include <map>
 
+// Helper function to print a variant
+template <typename T>
+void printVariant(const T& value) {
+    std::cout << value;
+}
+
 int main(int argc, char** argv) {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <csv_filename>" << std::endl;
@@ -25,8 +31,9 @@ int main(int argc, char** argv) {
     }
 
     const CSV_parser::Table csvData = csvParser.getCSVData(); 
-    const CSV_parser::Column salary = csvData[5];
+    const CSV_parser::Column salary = csvData[3];
     StatisticalOperation stats(salary, csvData);
+    
     double mean = stats.mean();
     double variance = stats.variance();
     std::map<CSV_parser::ColumnField, int> dictionary = stats.FrequencyCount();
@@ -34,9 +41,16 @@ int main(int argc, char** argv) {
     std::cout << "Mean: " << mean << std::endl; 
     std::cout << "Variance: " << variance << std::endl; 
     std::cout << "Frequency map of the column's elements:"<< std::endl;
+    
     // Print the map
     for (const auto& pair : dictionary) {
-        std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
+        std::cout << "Key: ";
+        // Use std::visit to handle the different types within the variant
+        std::visit([](const auto& value) {
+            printVariant(value);
+        }, pair.first);
+
+        std::cout << ", Frequency: " << pair.second << std::endl;
     }
 
     return 0;
