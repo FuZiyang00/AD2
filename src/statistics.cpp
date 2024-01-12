@@ -82,12 +82,11 @@ std::map<CSV_parser::ColumnField, int> StatisticalOperation::FrequencyCount() co
         throw std::runtime_error(
             "Cannot calculate variance for a column with no values (excluding header).");
     }
-    // replenishing the map
-    for (size_t i=1, i<column.size(); ++i) {
-        if (column[i].has_value()){
-            dictionary[column[i]]++;
+    for (size_t i = 1; i < column.size(); ++i) {
+    if (column[i].has_value()) {
+        dictionary[column[i].value()]++;  // Use .value() to access the optional's value
         }
-    }
+    }   
 
     return dictionary;
 

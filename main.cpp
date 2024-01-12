@@ -30,10 +30,14 @@ int main(int argc, char** argv) {
     double mean = stats.mean();
     double variance = stats.variance();
     std::map<CSV_parser::ColumnField, int> dictionary = stats.FrequencyCount();
-    
+
     std::cout << "Mean: " << mean << std::endl; 
     std::cout << "Variance: " << variance << std::endl; 
-    std::cout << "Frequency map of the column's elements:"<< std::endl <<dictionary<< std::endl;
+    std::cout << "Frequency map of the column's elements:"<< std::endl;
+    // Print the map
+    for (const auto& pair : dictionary) {
+        std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
+    }
 
     return 0;
 }
