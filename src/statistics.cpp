@@ -76,13 +76,12 @@ double StatisticalOperation::variance() const {
 
 std::map<CSV_parser::ColumnField, int> StatisticalOperation::FrequencyCount() const {
     
-    std::map<CSV::parser::ColumnField, int> dictionary; 
+    std::map<CSV_parser::ColumnField, int> dictionary; 
 
     if (column.size() <= 1) {
         throw std::runtime_error(
             "Cannot calculate variance for a column with no values (excluding header).");
     }
-
     // replenishing the map
     for (size_t i=1, i<column.size(); ++i) {
         if (column[i].has_value()){
