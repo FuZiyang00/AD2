@@ -74,9 +74,9 @@ double StatisticalOperation::variance() const {
 
 }
 
-map<CSV_parser::ColumnField, int> StatisticalOperation::FrequencyCount() const {
+std::map<CSV_parser::ColumnField, int> StatisticalOperation::FrequencyCount() const {
     
-    map<CSV::parser::ColumnField, int> dictionary; 
+    std::map<CSV::parser::ColumnField, int> dictionary; 
 
     if (column.size() <= 1) {
         throw std::runtime_error(
@@ -89,7 +89,7 @@ map<CSV_parser::ColumnField, int> StatisticalOperation::FrequencyCount() const {
             dictionary[column[i]]++;
         }
     }
-    
+
     return dictionary;
 
 

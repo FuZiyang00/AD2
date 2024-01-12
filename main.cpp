@@ -2,6 +2,7 @@
 #include "src/statistics.hpp"
 #include <iostream>
 #include <memory> 
+#include <map>
 
 int main(int argc, char** argv) {
     if (argc != 2) {
@@ -28,7 +29,8 @@ int main(int argc, char** argv) {
     StatisticalOperation stats(salary, csvData);
     double mean = stats.mean();
     double variance = stats.variance();
-    map<CSV_parser::ColumnField, int> dictionary = stats.FrequencyCount();
+    std::map<CSV_parser::ColumnField, int> dictionary = stats.FrequencyCount();
+    
     std::cout << "Mean: " << mean << std::endl; 
     std::cout << "Variance: " << variance << std::endl; 
     std::cout << "Frequency map of the column's elements:"<< std::endl <<dictionary<< std::endl;

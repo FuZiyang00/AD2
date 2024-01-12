@@ -22,7 +22,7 @@ public:
     : column(column), data(data) {};
     double mean() const;
     double variance() const;
-    map<CSV_parser::ColumnField, int> FrequencyCount() const;
+    std::map<CSV_parser::ColumnField, int> FrequencyCount() const;
     void summary(const std::string& filename) const;
 
 private:
