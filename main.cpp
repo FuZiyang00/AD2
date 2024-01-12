@@ -24,10 +24,9 @@ int main(int argc, char** argv) {
     }
 
     const CSV_parser::Table csvData = csvParser.getCSVData(); 
-    const CSV_parser::Column column = csvData[0];
-    StatisticalOperation stats(column, csvData);
+    const CSV_parser::Column salary = csvData[5];
+    StatisticalOperation stats(salary, csvData);
     double mean = stats.mean();
 
-    
     return 0;
 }

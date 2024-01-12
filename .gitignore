@@ -1,1 +1,7 @@
-boost_1_84_0/
+# Ignore all executables
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib

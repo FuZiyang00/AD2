@@ -34,29 +34,31 @@ bool CSV_parser::parseCSV() {
     }
 
     size_t n_columns = rows[0].size();
-    for (size_t i=0; i<n_columns; ++i){
+    for (size_t i = 0; i < n_columns; ++i) {
         Column column;
-        for (const auto& row: rows){
-            const auto &cell = row[i];
-            if (cell.empty()){
+        for (const auto& row : rows) {
+            const auto& cell = row[i];
+            if (cell.empty()) {
                 column.push_back(std::nullopt);
-            } 
-            else if (std::isdigit(cell[0]) || (cell[0] == '-' && std::isdigit(cell[1]))) {
+            } else if (std::isdigit(cell[0]) || (cell[0] == '-' && std::isdigit(cell[1]))) {
                 // Numeric field
-                if (cell.find('.')!= std::string::npos) {
+                if (cell.find('.') != std::string::npos) {
                     // Double
                     column.push_back(std::stod(cell));
+                } else {
+                    column.push_back(std::stoi(cell));
                 }
-                else {column.push_back(std::stoi(cell));}
+            } else {
+                // Categorical data (moved outside the else if block)
+                column.push_back(cell);
             }
-            // categorical data
-            column.push_back(cell);
         }
         csv.push_back(column);
     }
     file.close();
     return true;
 }
+
 
 void CSV_parser::displayTable(size_t numLinesToDisplay) const {
     // Vector to store the maximum width for each column
