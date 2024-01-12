@@ -22,10 +22,7 @@ public:
     : column(column), data(data) {};
     double mean() const;
     double variance() const;
-	double median() const;
-	double standard_dev() const;
-	double covariance(const CSV_parser::Column& column2) const;
-	double correlation(const CSV_parser::Column& column2) const;
+    map<CSV_parser::ColumnField, int> FrequencyCount() const;
     void summary(const std::string& filename) const;
 
 private:

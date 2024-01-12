@@ -77,8 +77,6 @@ bool CSV_parser::parseCSV() {
     return true;
 }
 
-
-
 void CSV_parser::displayTable(size_t numLinesToDisplay) const {
     // Vector to store the maximum width for each column
     std::vector<size_t> columnWidths(csv.size(), 0);

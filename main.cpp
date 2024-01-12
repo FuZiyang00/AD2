@@ -27,7 +27,11 @@ int main(int argc, char** argv) {
     const CSV_parser::Column salary = csvData[5];
     StatisticalOperation stats(salary, csvData);
     double mean = stats.mean();
-    std::cout<< mean ;
+    double variance = stats.variance();
+    map<CSV_parser::ColumnField, int> dictionary = stats.FrequencyCount();
+    std::cout << "Mean: " << mean << std::endl; 
+    std::cout << "Variance: " << variance << std::endl; 
+    std::cout << "Frequency map of the column's elements:"<< std::endl <<dictionary<< std::endl;
 
     return 0;
 }
