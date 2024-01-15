@@ -30,5 +30,4 @@ private:
     CSV_parser::Table data;   
 };
 
-
 #endif // STATISTICS_HPP
