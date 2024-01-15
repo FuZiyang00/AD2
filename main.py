@@ -1,9 +1,8 @@
-from src.csv_stats import csv_stats
-import time 
+from src.csv_statistics import CSV
 
 if __name__ == "__main__": 
     
-    df = csv_stats("../salary.csv")
+    df = CSV("../salary.csv")
 
     print(f"Mean with C++ bindings: {df.c_mean()}")
     print(f"Mean with numpy: {df.nump_mean(5)}")

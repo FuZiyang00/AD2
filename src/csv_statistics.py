@@ -3,7 +3,7 @@ sys.path.append('../build')
 import numpy as np
 import pandas as pd
 import time 
-from csv_stats import CSV_parser, StatisticalOperation
+from AD2.src.csv_statistics import CSV_parser, StatisticalOperation
 
 def timer(my_function):
     def wrapper(*args, **kwargs):
