@@ -7,3 +7,4 @@
 *.dylib
 /build/
 /extern/
+/virtual_env/

@@ -52,7 +52,7 @@ target_link_libraries(csvstats PRIVATE ${Boost_LIBRARIES})
 
 # --BUILD EXECUTABLES--
 
-add_executable(maincsv main.cpp)
+add_executable(maincsv src/main.cpp)
 
 ### link against library
 target_link_libraries(maincsv PRIVATE libcsvparser libstats)

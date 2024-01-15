@@ -9,5 +9,5 @@ rm -r build
 mkdir build
 cd build
 cmake -DBOOST_ROOT=${BOOST_ROOT} ..
-make
+make -j4
 cd ..
