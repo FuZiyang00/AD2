@@ -16,7 +16,7 @@ PYBIND11_MODULE(csv_parser, m) {
 
 PYBIND11_MODULE(statistics, m) {
     py::class_<StatisticalOperation>(m, "StatisticalOperation")
-        .def(py::init([](const std::vector<std::optional<ColumnField>>& column, const std::vector<Column>& data) {
+        .def(py::init([](const std::vector<std::optional<CSV_parser::ColumnField>>& column, const CSV_parser::Table& data) {
             return new StatisticalOperation(column, data);
         })) // Lambda constructor to tell Python what types column and data are
 
