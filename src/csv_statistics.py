@@ -1,9 +1,7 @@
-import sys
-sys.path.append('../build')
 import numpy as np
 import pandas as pd
-import time 
-from AD2.src.csv_statistics import CSV_parser, StatisticalOperation
+import time
+import statistics
 
 def timer(my_function):
     def wrapper(*args, **kwargs):
@@ -14,7 +12,7 @@ def timer(my_function):
         return result
     return wrapper
 
-class csv_stats:
+class CSV:
     def __init__(self, inputfile):
         self.csv = CSV_parser(inputfile)
         self.table = self.csv.getCSVData()

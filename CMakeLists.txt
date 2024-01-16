@@ -2,10 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(AD2
 	LANGUAGES CXX
-	DESCRIPTION "second homework: this CMake file serves 3 purposes: 
-                1. building the csv_parser and statistics as shared modules
-                2. building the final executable
-                3. building an unique binding for these 2 modules")
+	DESCRIPTION "Scientific Toolbox")
 
 add_compile_options(-std=c++17 -Wall -Wextra -Wpedantic -Wno-deprecated-declarations)
 
@@ -36,23 +33,23 @@ target_include_directories(libstats PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 ### link against Boost and any other necessary libraries
 target_link_libraries(libstats PRIVATE ${Boost_LIBRARIES})
 
-# --BUILDING PYTHON BINDING--
-set(pybind11_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/pybind11/include")
-find_package(pybind11 REQUIRED)
-
-### Only one binding module for the 2 modules (csv_parser and statistics)
-pybind11_add_module(csvstats src/csv_parser.hpp src/csv_parser.cpp src/statistics.hpp src/statistics.cpp src/bindings.cpp)
-
-### include header files for the library
-target_include_directories(csvstats PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-### link against Boost and any other necessary libraries
-target_link_libraries(csvstats PRIVATE ${Boost_LIBRARIES})
-
-
 # --BUILD EXECUTABLES--
-
 add_executable(maincsv src/main.cpp)
 
 ### link against library
 target_link_libraries(maincsv PRIVATE libcsvparser libstats)
+
+# --BUILDING PYTHON BINDING--
+set(pybind11_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/pybind11/include")
+find_package(pybind11 REQUIRED)
+
+### csvparser binding 
+pybind11_add_module(csvparser src/csv_parser.hpp src/csv_parser.cpp src/csv_bindings.cpp)
+
+### statistics binding
+pybind11_add_module(statistics src/statistics.hpp src/statistics.cpp src/stats_bindings.cpp)
+
+### link against Boost and any other necessary libraries
+target_link_libraries(statistics PRIVATE ${Boost_LIBRARIES})
+
+
