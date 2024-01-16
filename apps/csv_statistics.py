@@ -17,11 +17,11 @@ def timer(my_function):
 
 class CSV:
     def __init__(self, inputfile):
-        self.csv = csvparser_module(inputfile)
+        self.csv = csvparser_module.CSV_parser(inputfile)
         self.table = self.csv.getCSVData()
         self.data = pd.read_csv(inputfile)
-        self.column = self.table[5] # indexing the column I want to analysise
-        self.stats = statistica_module(self.column, self.table)
+        self.column = self.table[3] # indexing the column I want to analysise
+        self.stats = statistica_module.StatisticalOperation(self.column, self.table)
 
 
     @timer
