@@ -5,7 +5,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(statistics, m) {
+PYBIND11_MODULE(statistica, m) {
     m.doc() = "Python bind of statistics class";
     py::class_<StatisticalOperation>(m, "StatisticalOperation")
         .def(py::init([](const std::vector<std::optional<CSV_parser::ColumnField>>& column, const CSV_parser::Table& data) {
@@ -17,8 +17,8 @@ PYBIND11_MODULE(statistics, m) {
 }
 
 // Export function for Python to recognize the module
-PyMODINIT_FUNC PyInit_statistics() {
-    return PyModule_Create(&statistics);
+PyMODINIT_FUNC PyInit_statistica() {
+    return PyModule_Create(&statistica);
 }
 
 
