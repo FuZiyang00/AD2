@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
 import time
-import statistics
+import sys
+sys.path.append('../build')
+import statistica_module
+import csvparser_module
 
 def timer(my_function):
     def wrapper(*args, **kwargs):
@@ -14,11 +17,11 @@ def timer(my_function):
 
 class CSV:
     def __init__(self, inputfile):
-        self.csv = CSV_parser(inputfile)
+        self.csv = csvparser_module(inputfile)
         self.table = self.csv.getCSVData()
         self.data = pd.read_csv(inputfile)
         self.column = self.table[5] # indexing the column I want to analysise
-        self.stats = StatisticalOperation(self.column, self.table)
+        self.stats = statistica_module(self.column, self.table)
 
 
     @timer

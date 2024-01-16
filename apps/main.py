@@ -1,6 +1,4 @@
 from csv_statistics import CSV
-
-
     
 df = CSV("../salary.csv")
 
