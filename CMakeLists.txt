@@ -34,7 +34,7 @@ target_include_directories(libstats PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_link_libraries(libstats PRIVATE ${Boost_LIBRARIES})
 
 # --BUILD EXECUTABLES--
-add_executable(maincsv src/main.cpp)
+add_executable(maincsv apps/main.cpp)
 
 ### link against library
 target_link_libraries(maincsv PRIVATE libcsvparser libstats)
