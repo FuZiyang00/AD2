@@ -14,4 +14,9 @@ PYBIND11_MODULE(csv_parser, m) {
         .def("getCSVData", &CSV_parser::getCSVData);
 }
 
+// Export function for Python to recognize the module
+PyMODINIT_FUNC PyInit_csv_parser() {
+    return PyModule_Create(&csv_parser);
+}
+
 
