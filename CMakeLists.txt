@@ -40,14 +40,13 @@ add_executable(maincsv apps/main.cpp)
 target_link_libraries(maincsv PRIVATE libcsvparser libstats)
 
 # --BUILDING PYTHON BINDING--
-set(pybind11_DIR "${CMAKE_CURRENT_SOURCE_DIR}/extern/pybind11/include")
 find_package(pybind11 REQUIRED)
 
 ### csvparser binding 
 pybind11_add_module(csvparser src/csv_parser.hpp src/csv_parser.cpp src/csv_bindings.cpp)
 
 ### statistics binding
-pybind11_add_module(statistica src/statistics.hpp src/statistics.cpp src/stats_bindings.cpp)
+pybind11_add_module(statistica_module src/statistics.hpp src/statistics.cpp src/stats_bindings.cpp)
 
 ### link against Boost and any other necessary libraries
 target_link_libraries(statistica PRIVATE ${Boost_LIBRARIES})

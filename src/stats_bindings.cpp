@@ -17,8 +17,8 @@ PYBIND11_MODULE(statistica, m) {
 }
 
 // Export function for Python to recognize the module
-PyMODINIT_FUNC PyInit_statistica() {
-    return PyModule_Create(&statistica);
+PyMODINIT_FUNC PyInit_statistica_module() {
+    return PyModule_Create(&m);
 }
 
 
