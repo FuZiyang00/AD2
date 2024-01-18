@@ -4,7 +4,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(csvparser, m) {
+PYBIND11_MODULE(csvparser_module, m) {
     m.doc() = "Python bind of CSV_parser class";
 
     py::class_<CSV_parser>(m, "CSV_parser")
@@ -13,10 +13,4 @@ PYBIND11_MODULE(csvparser, m) {
         .def("displayTable", &CSV_parser::displayTable)
         .def("getCSVData", &CSV_parser::getCSVData);
 }
-
-// Export function for Python to recognize the module
-PyMODINIT_FUNC PyInit_csv_parser() {
-    return PyModule_Create(&m);
-}
-
 

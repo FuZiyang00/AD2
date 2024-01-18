@@ -43,12 +43,12 @@ target_link_libraries(maincsv PRIVATE libcsvparser libstats)
 find_package(pybind11 REQUIRED)
 
 ### csvparser binding 
-pybind11_add_module(csvparser src/csv_parser.hpp src/csv_parser.cpp src/csv_bindings.cpp)
+pybind11_add_module(csvparser_module src/csv_parser.hpp src/csv_parser.cpp src/csv_bindings.cpp)
 
 ### statistics binding
 pybind11_add_module(statistica_module src/statistics.hpp src/statistics.cpp src/stats_bindings.cpp)
 
 ### link against Boost and any other necessary libraries
-target_link_libraries(statistica PRIVATE ${Boost_LIBRARIES})
+target_link_libraries(statistica_module PRIVATE ${Boost_LIBRARIES})
 
 
